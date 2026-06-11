@@ -10,35 +10,35 @@
 
 **Escuela Profesional de Ingeniería de Sistemas**
 
-**Proyecto *{Nombre de Proyecto}***
+**Proyecto *Auditoría de Base de Datos***
 
-Curso: *{Nombre de Asignatura}*
+Curso: *Base de Datos II*
 
-Docente: *{Nombre de Docente}*
+Docente: *Mag. Patrick Cuadros Quiroga*
 
 Integrantes:
 
-***{Apellidos y nombres del estudiante (código universitario)}***
+***Ramos Atahuachi, Fabricio Farid Edmilson (2023076798)***
+***Colque Quispe, Rodrigo Sídney (2023077078)***
 
 **Tacna – Perú**
 
-***{Año}***
-
+***2026***
 **  
 **
 </center>
 <div style="page-break-after: always; visibility: hidden">\pagebreak</div>
 
-Sistema *{Nombre del Sistema}*
+Sistema *Auditoría de Base de Datos*
 
 Informe de Factibilidad
 
 Versión *{1.0}*
 
 |CONTROL DE VERSIONES||||||
+| Versión | Hecha por | Revisada por | Aprobada por | Fecha | Motivo |
 | :-: | :- | :- | :- | :- | :- |
-|Versión|Hecha por|Revisada por|Aprobada por|Fecha|Motivo|
-|1\.0|MPV|ELV|ARV|10/10/2020|Versión Original|
+| 1.0 | F.R. / R.C. | | | 27/03/2026 | Versión Original |
 
 <div style="page-break-after: always; visibility: hidden">\pagebreak</div>
 
@@ -76,155 +76,124 @@ Versión *{1.0}*
 1. <span id="_Toc52661346" class="anchor"></span>**Descripción del Proyecto**
 
     1.1. Nombre del proyecto
+         Auditoría de Base de Datos
 
     1.2. Duración del proyecto
+         Estimada en 5 fases de desarrollo iterativo, específicamente 2 meses de duración.
 
     1.3. Descripción
-
-        En que consiste el proyecto/importancia del mismo, contexto en que se va desenvolver
+         El proyecto consiste en la creación de un sistema automatizado que registre, controle y monitoree todas las transacciones críticas a nivel de datos (DDL y DML). Esto abarca desde la captura de operaciones INSERT, UPDATE y DELETE, hasta el registro de metadatos de sesión, permitiendo identificar anomalías y mantener un historial transparente de los cambios.
 
     1.4. Objetivos
 
         1.4.1 Objetivo general
+              Implementar un mecanismo de vigilancia técnica para registrar operaciones DML (Insert, Update, Delete) en tiempo real.
         1.4.2 Objetivos Específicos
-            Para cada objetivo específico se indicara que se va a lograr
+              - Diseñar una estructura de logs centralizada e inalterable.
+              - Desarrollar disparadores (triggers) que capturen el contexto de sesión (IP y Usuario).
+              - Generar reportes legibles para auditores externos o administradores de base de datos.
+              - Realizar pruebas de integridad, optimizar índices para evitar impacto en el rendimiento y elaborar la documentación final.
 
 <div style="page-break-after: always; visibility: hidden">\pagebreak</div>
 
 2. <span id="_Toc52661347" class="anchor"></span>**Riesgos**
 
-    Señale los riesgos que pudieran afectar el éxito del proyecto.}*
+    - **Rendimiento:** Posible aumento en el tiempo de respuesta de las transacciones debido a la ejecución de triggers.
+    - **Almacenamiento:** Crecimiento acelerado de la tabla de logs en bases de datos de alto tráfico.
+    - **Privacidad:** Riesgo de acceso no autorizado a los logs de auditoría por parte de personal técnico.
 
 <div style="page-break-after: always; visibility: hidden">\pagebreak</div>
 
 3. <span id="_Toc52661348" class="anchor"></span>**Análisis de la Situación actual**
 
     3.1. Planteamiento del problema
-
-            Describa antecedentes y situación actual, explicando la problemática y/o necesidad que será resuelta con el proyecto propuesto.
+         Actualmente, las bases de datos transaccionales sufren modificaciones sin un rastro claro del origen, usuario o momento del cambio. Esto genera vulnerabilidades operativas y de seguridad que impiden investigar manipulaciones indebidas o errores de sistema de forma eficaz.
 
     3.2. Consideraciones de hardware y software
-
-            Hardware y software posibles para la implementación, se analizara lo que existe y es alcanzable, se evaluara que tecnología se puede > utilizar en el proyecto.
+         La implementación requiere el motor de base de datos actual de la institución (ej. SQL Server o PostgreSQL) y herramientas de gestión nativas. A nivel de hardware, se requiere capacidad de disco adicional en el servidor para almacenar la nueva tabla de Logs estructurada.
 
 <div style="page-break-after: always; visibility: hidden">\pagebreak</div>
 
-4. <span id="_Toc52661349" class="anchor"></span>**Estudio de
-    Factibilidad**
-
-    Describir los resultados que esperan alcanzar del estudio de factibilidad, las actividades que se realizaron para preparar la evaluación de factibilidad y por quien fue aprobado.
+4. <span id="_Toc52661349" class="anchor"></span>**Estudio de Factibilidad**
 
     4.1. <span id="_Toc52661350" class="anchor"></span>Factibilidad Técnica
-
-        El estudio de viabilidad técnica se enfoca en obtener un entendimiento de los recursos tecnológicos disponibles actualmente y su aplicabilidad a las necesidades que se espera tenga el proyecto. En el caso de tecnología informática esto implica una evaluación del hardware y software y como este puede cubrir las necesidades del sistema propuesto.
-
-        Realizar una evaluación de la tecnología actual existente y la posibilidad de utilizarla en el desarrollo e implantación del sistema.*
-
-        Describir acerca del hardware (equipos, servidor), software (aplicaciones, navegadores, sistemas operativos, dominio, internet, infraestructura de red física, etc.
+         El proyecto es altamente factible. Las tecnologías propuestas (DDL, Vistas SQL, Triggers y Stored Procedures) son nativas de cualquier Sistema Gestor de Base de Datos Relacional (RDBMS) estándar. No se requiere la adquisición de software de terceros, lo que facilita cubrir las necesidades del sistema propuesto íntegramente mediante código SQL.
 
     4.2. <span id="_Toc52661351" class="anchor"></span>Factibilidad Económica
 
-        El propósito del estudio de viabilidad económica, es determinar los beneficios económicos del proyecto o sistema propuesto para la organización, en contraposición con los costos.
-        Como se mencionó anteriormente en el estudio de factibilidad técnica wvaluar si la institución (departamento de TI) cuenta con las herramientas necesarias para la implantación del sistema y evaluar si la propuesta requiere o no de una inversión inicial en infraestructura informática.
-        Se plantearán los costos del proyecto.
-        Costeo del Proyecto: Consiste en estimar los costos de los recursos Humanos, materiales o consumibles y/o máquinas) directos para completar las actividades del proyecto}.*
-
-        Definir los siguientes costos:
-
         4.2.1. Costos Generales
+               Equipos de desarrollo ya disponibles (computadoras, software de diseño).
 
-                Los costos generales son todos los gastos realizados en accesorios y material de oficina y de uso diario, necesarios para los procesos, tales como, papeles, plumas, cartuchos de impresora, marcadores, computadora etc. Colocar tabla de costos.
-
-        4.2.2. Costos operativos durante el desarrollo 
-        
-                Evaluar costos necesarios para la operatividad de las actividades de la empresa durante el periodo en el que se realizara el proyecto. Los costos de operación pueden ser renta de oficina, agua, luz, teléfono, etc.
+        4.2.2. Costos operativos durante el desarrollo
+               Consumo eléctrico y conectividad a internet durante el periodo de programación.
 
         4.2.3. Costos del ambiente
-
-                Evaluar si se cuenta con los requerimientos técnicos para la implantación del software como el dominio, infraestructura de red, acceso a internet, etc.
+               Posible aumento en el costo de almacenamiento de red a largo plazo debido a los registros generados.
 
         4.2.4. Costos de personal
+               Inversión en horas hombre de los ingenieros de software o DBAs encargados de la programación de triggers, vistas y pruebas de rendimiento.
 
-                Aquí se incluyen los gastos generados por el recurso humano que se necesita para el desarrollo del sistema únicamente.
-
-                No se considerará personal para la operación y funcionamiento del sistema.
-
-                Incluir tabla que muestra los gastos correspondientes al personal.
-
-                Indicar organización y roles. Indicar horario de trabajo del personal.
-
-        4.2.5.  Costos totales del desarrollo del sistema
-
-                {Totalizar costos y realizar resumen de costo final del proyecto y la forma de pago.
+        4.2.5. Costos totales del desarrollo del sistema
+               Se calcularán en base a las horas necesarias para completar las 20 tareas de GitHub (aprox. S/ 500.00 en recursos operativos directos).
 
     4.3. <span id="_Toc52661352" class="anchor"></span>Factibilidad Operativa
-
-        Describir los beneficios del producto y si se tiene la capacidad por parte del cliente para mantener el sistema funcionando y garantizar el buen funcionamiento y su impacto en los usuarios. Lista de interesados.
+         La automatización del monitoreo se ejecutará en segundo plano sin interrumpir las tareas del usuario final. El mantenimiento futuro estará garantizado gracias a la creación de un Manual y README en la fase de cierre.
 
     4.4. <span id="_Toc52661353" class="anchor"></span>Factibilidad Legal
+         Es completamente factible e, incluso, necesario. Ayuda a cumplir de forma rigurosa con regulaciones de protección de datos personales mediante el registro de quién accede y modifica la información.
 
-        Determinar si existe conflicto del proyecto con restricciones legales como leyes y regulaciones del país o locales relacionadas con seguridad, protección de datos, conducta de negocio, empleo y adquisiciones.
-
-    4.5. <span id="_Toc52661354" class="anchor"></span>Factibilidad Social 
-
-        Evaluar influencias y asuntos de índole social y cultural como el clima político, códigos de conducta y ética*
+    4.5. <span id="_Toc52661354" class="anchor"></span>Factibilidad Social
+         Promueve una cultura organizacional de transparencia y responsabilidad entre los colaboradores.
 
     4.6. <span id="_Toc52661355" class="anchor"></span>Factibilidad Ambiental
-
-        Evaluar influencias y asuntos de índole ambiental como el impacto y repercusión en el medio ambiente.
+         No genera ningún impacto ambiental negativo directo.
 
 <div style="page-break-after: always; visibility: hidden">\pagebreak</div>
 
 5. <span id="_Toc52661356" class="anchor"></span>**Análisis Financiero**
 
-    El plan financiero se ocupa del análisis de ingresos y gastos asociados a cada proyecto, desde el punto de vista del instante temporal en que se producen. Su misión fundamental es detectar situaciones financieramente inadecuadas.
-    Se tiene que estimar financieramente el resultado del proyecto.
+    El plan financiero evalúa la viabilidad del proyecto mediante el análisis de los flujos de ingresos y egresos proyectados en el tiempo, con el fin de asegurar que la inversión sea sostenible y detectar posibles desequilibrios económicos antes de la ejecución.
 
     5.1. Justificación de la Inversión
 
         5.1.1. Beneficios del Proyecto
 
-            El beneficio se calcula como el margen económico menos los costes de oportunidad, que son los márgenes que hubieran podido obtenerse de haber dedicado el capital y el esfuerzo a otras actividades.
-            El beneficio, obtenido lícitamente, no es sólo una recompensa a la inversión, al esfuerzo y al riesgo asumidos por el empresario, sino que también es un factor esencial para que las empresas sigan en el  mercado e incorporen nuevas inversiones al tejido industrial y social de las naciones.
-            Describir beneficios tangibles e intangibles*
-            Beneficios tangibles: son de fácil cuantificación, generalmente están relacionados con la reducción de recursos o talento humano.
-            Beneficios intangibles: no son fácilmente cuantificables y están relacionados con elementos o mejora en otros procesos de la organización.
->
-            Ejemplo de beneficios:
+            Beneficios tangibles:
+            - Reducción de costos operativos: Disminución del tiempo que el personal de TI dedica a la investigación manual de errores o manipulaciones en las tablas.
+            - Prevención de pérdidas financieras: Mitigación de riesgos económicos asociados a fraudes o alteraciones no detectadas en transacciones críticas.
+            - Cumplimiento legal: Evita posibles multas por incumplimiento de normativas de protección de datos al mantener registros de acceso y modificación.
+            - Disponibilidad de recursos: Optimización del uso de talento humano al automatizar la vigilancia de la base de datos.
 
-            - Mejoras en la eficiencia del área bajo estudio.
-            - Reducción de personal.
-            - Reducción de futuras inversiones y costos.
-            - Disponibilidad del recurso humano.
-            - Mejoras en planeación, control y uso de recursos.
-            - Suministro oportuno de insumos para las operaciones.
-            - Cumplimiento de requerimientos gubernamentales.
-            - Toma acertada de decisiones.
-            - Disponibilidad de información apropiada.
-            - Aumento en la confiabilidad de la información.
-            - Mejor servicio al cliente externo e interno
-            - Logro de ventajas competitivas.
-            - Valor agregado a un producto de la compañía.
-        
+            Beneficios intangibles:
+            - Aumento en la confiabilidad: Mayor seguridad en la veracidad de la información almacenada para todos los niveles de la organización.
+            - Transparencia organizacional: Fomenta una cultura de responsabilidad entre los usuarios con acceso a datos sensibles.
+            - Toma acertada de decisiones: Proporciona un historial transparente que sirve de base para análisis forenses y auditorías de gestión.
+            - Mejora en la reputación: Aporta valor agregado al producto o servicio al garantizar estándares altos de integridad de datos.
+
         5.1.2. Criterios de Inversión
 
             5.1.2.1. Relación Beneficio/Costo (B/C)
-
-                En base a los costos y beneficios identificados se evalúa si es factible el desarrollo del proyecto. 
-                Si se presentan varias alternativas de solución se evaluará cada una de ellas para determinar la mejor solución desde el punto de vista del > retorno de la inversión
-                El B/C si es mayor a uno, se acepta el proyecto; si el B/C es igual a uno es indiferente aceptar o rechazar el proyecto y si el B/C es menor a uno se rechaza el proyecto
+                     Costos (C): Estimando 2 meses de desarrollo por 2 integrantes con un costo simbólico de S/ 250.00 en recursos operativos (luz e internet) y el valor del tiempo de desarrollo, sumamos una inversión total de S/ 500.00.
+                     Beneficios (B): Se estima que el sistema previene la pérdida de integridad de datos cuyo costo de recuperación manual o pérdida de información crítica ascendería a S/ 1,800.00 anuales.
+                     B/C = 1800 / 500 = 3.6
+                     Evaluación: Al ser mayor a 1, se acepta el proyecto.
 
             5.1.2.2. Valor Actual Neto (VAN)
-            
-                Valor actual de los beneficios netos que genera el proyecto. Si el VAN es mayor que cero, se acepta el proyecto; si el VAN es igual a cero es indiferente aceptar o rechazar el proyecto y si el VAN es menor que cero se rechaza el proyecto
+                     Considerando que el software no tiene costo de licencia y el mantenimiento es interno, proyectamos un flujo neto de ahorro de S/ 150.00 mensuales.
+                     - Inversión Inicial: S/ 500.00.
+                     - Flujos Netos (12 meses): S/ 1,800.00 anuales.
+                     - Tasa de Descuento (COK): 10% anual.
+                     Calculando el valor presente, el VAN resultante es de S/ 1,136.36.
+                     Criterio de aceptación: Al ser el VAN > 0, se confirma que el sistema genera un beneficio económico real.
 
-            5.1.2.3 Tasa Interna de Retorno (TIR)*
-                Es la tasa porcentual que indica la rentabilidad promedio anual que genera el capital invertido en el proyecto. Si la TIR es mayor que el costo de oportunidad se acepta el proyecto, si la TIR es igual al costo de oportunidad es indiferente aceptar o rechazar el proyecto, si la TIR es menor que el costo de oportunidad se rechaza el proyecto
-
-                Costo de oportunidad de capital (COK) es la tasa de interés que podría haber obtenido con el dinero invertido en el proyecto
+            5.1.2.3. Tasa Interna de Retorno (TIR)
+                     Debido a que el desarrollo se basa en tecnologías nativas (scripts DDL, Triggers), la rentabilidad es excepcionalmente alta en comparación con adquirir una herramienta de auditoría comercial.
+                     - TIR Estimada: 62%
+                     - Costo de Oportunidad (COK): 10%
+                     Evaluación: Como la TIR (62%) es mayor que el COK (10%), se acepta el proyecto.
 
 <div style="page-break-after: always; visibility: hidden">\pagebreak</div>
 
 6. <span id="_Toc52661357" class="anchor"></span>**Conclusiones**
 
-Explicar los resultados del análisis de factibilidad que nos indican si el proyecto es viable y factible.
+    El desarrollo de las 5 fases planteadas para el Sistema de Auditoría de Base de Datos es factible a nivel técnico, operativo y económico. Utiliza tecnología y recursos nativos de base de datos que la organización ya posee, minimizando la inversión. Su ejecución logrará blindar la integridad del sistema y responderá eficazmente ante cualquier evento o anomalía de seguridad en la información.
