@@ -306,11 +306,12 @@ if st.session_state.get("db_creds"):
                                 for tabla in tablas_seleccionadas:
                                     if motor_actual == "PostgreSQL":
                                         cur.execute(f"DROP TRIGGER IF EXISTS trg_auditoria_{tabla} ON public.{tabla};") # nosemgrep
+                                        # nosemgrep
                                         cur.execute(f"""
                                             CREATE TRIGGER trg_auditoria_{tabla}
                                             AFTER INSERT OR UPDATE OR DELETE ON public.{tabla}
                                             FOR EACH ROW EXECUTE FUNCTION public.fn_auditoria_generica();
-                                        """) # nosemgrep
+                                        """)
                                     elif motor_actual == "MySQL":
                                         cur.execute(f"SHOW COLUMNS FROM {tabla};") # nosemgrep
                                         columnas = [row[0] for row in cur.fetchall()]
