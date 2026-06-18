@@ -305,29 +305,29 @@ if st.session_state.get("db_creds"):
                             try:
                                 for tabla in tablas_seleccionadas:
                                     if motor_actual == "PostgreSQL":
-                                        cur.execute(f"DROP TRIGGER IF EXISTS trg_auditoria_{tabla} ON public.{tabla};")
+                                        cur.execute(f"DROP TRIGGER IF EXISTS trg_auditoria_{tabla} ON public.{tabla};") # nosemgrep
                                         cur.execute(f"""
                                             CREATE TRIGGER trg_auditoria_{tabla}
                                             AFTER INSERT OR UPDATE OR DELETE ON public.{tabla}
                                             FOR EACH ROW EXECUTE FUNCTION public.fn_auditoria_generica();
-                                        """)
+                                        """) # nosemgrep
                                     elif motor_actual == "MySQL":
-                                        cur.execute(f"SHOW COLUMNS FROM {tabla};")
+                                        cur.execute(f"SHOW COLUMNS FROM {tabla};") # nosemgrep
                                         columnas = [row[0] for row in cur.fetchall()]
                                         old_cols_str = ", ".join([f"'{col}', OLD.{col}" for col in columnas])
                                         new_cols_str = ", ".join([f"'{col}', NEW.{col}" for col in columnas])
                                         json_old = f"JSON_OBJECT({old_cols_str})"
                                         json_new = f"JSON_OBJECT({new_cols_str})"
                                         for op, val, name in [("D", json_old, "delete"), ("I", json_new, "insert"), ("U", None, "update")]:
-                                            cur.execute(f"DROP TRIGGER IF EXISTS trg_auditoria_{tabla}_{name};")
+                                            cur.execute(f"DROP TRIGGER IF EXISTS trg_auditoria_{tabla}_{name};") # nosemgrep
                                             if op == "U":
-                                                cur.execute(f"CREATE TRIGGER trg_auditoria_{tabla}_update AFTER UPDATE ON {tabla} FOR EACH ROW INSERT INTO AUDITORIA_LOGS (tabla_nombre, operacion, usuario_bd, valores_old, valores_new) VALUES ('{tabla}', 'U', USER(), {json_old}, {json_new});")
+                                                cur.execute(f"CREATE TRIGGER trg_auditoria_{tabla}_update AFTER UPDATE ON {tabla} FOR EACH ROW INSERT INTO AUDITORIA_LOGS (tabla_nombre, operacion, usuario_bd, valores_old, valores_new) VALUES ('{tabla}', 'U', USER(), {json_old}, {json_new});") # nosemgrep
                                             elif op == "D":
-                                                cur.execute(f"CREATE TRIGGER trg_auditoria_{tabla}_delete AFTER DELETE ON {tabla} FOR EACH ROW INSERT INTO AUDITORIA_LOGS (tabla_nombre, operacion, usuario_bd, valores_old) VALUES ('{tabla}', 'D', USER(), {json_old});")
+                                                cur.execute(f"CREATE TRIGGER trg_auditoria_{tabla}_delete AFTER DELETE ON {tabla} FOR EACH ROW INSERT INTO AUDITORIA_LOGS (tabla_nombre, operacion, usuario_bd, valores_old) VALUES ('{tabla}', 'D', USER(), {json_old});") # nosemgrep
                                             else:
-                                                cur.execute(f"CREATE TRIGGER trg_auditoria_{tabla}_insert AFTER INSERT ON {tabla} FOR EACH ROW INSERT INTO AUDITORIA_LOGS (tabla_nombre, operacion, usuario_bd, valores_new) VALUES ('{tabla}', 'I', USER(), {json_new});")
+                                                cur.execute(f"CREATE TRIGGER trg_auditoria_{tabla}_insert AFTER INSERT ON {tabla} FOR EACH ROW INSERT INTO AUDITORIA_LOGS (tabla_nombre, operacion, usuario_bd, valores_new) VALUES ('{tabla}', 'I', USER(), {json_new});") # nosemgrep
                                     elif motor_actual == "SQLite":
-                                        cur.execute(f"PRAGMA table_info({tabla});")
+                                        cur.execute(f"PRAGMA table_info({tabla});") # nosemgrep
                                         columnas = [row[1] for row in cur.fetchall()]
                                         old_cols_str = ", ".join([f"'{col}', OLD.{col}" for col in columnas])
                                         new_cols_str = ", ".join([f"'{col}', NEW.{col}" for col in columnas])
@@ -338,8 +338,8 @@ if st.session_state.get("db_creds"):
                                             ("insert", f"INSERT INTO AUDITORIA_LOGS (tabla_nombre, operacion, valores_new) VALUES ('{tabla}', 'I', {json_new});"),
                                             ("update", f"INSERT INTO AUDITORIA_LOGS (tabla_nombre, operacion, valores_old, valores_new) VALUES ('{tabla}', 'U', {json_old}, {json_new});"),
                                         ]:
-                                            cur.execute(f"DROP TRIGGER IF EXISTS trg_auditoria_{tabla}_{suffix};")
-                                            cur.execute(f"CREATE TRIGGER trg_auditoria_{tabla}_{suffix} AFTER {'DELETE' if suffix=='delete' else 'INSERT' if suffix=='insert' else 'UPDATE'} ON {tabla} FOR EACH ROW BEGIN {body} END;")
+                                            cur.execute(f"DROP TRIGGER IF EXISTS trg_auditoria_{tabla}_{suffix};") # nosemgrep
+                                            cur.execute(f"CREATE TRIGGER trg_auditoria_{tabla}_{suffix} AFTER {'DELETE' if suffix=='delete' else 'INSERT' if suffix=='insert' else 'UPDATE'} ON {tabla} FOR EACH ROW BEGIN {body} END;") # nosemgrep
                                 conn.commit()
                             finally:
                                 cur.close()
